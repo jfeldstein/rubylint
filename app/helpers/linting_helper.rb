@@ -1,0 +1,2 @@
+module LintingHelper
+end

@@ -1,0 +1,7 @@
+- unless @linted.blank?
+  %pre= @linted.pretty_inspect
+
+= form_tag do |f|
+  %textarea#lintable{:name => "lintable", :cols => 100, :rows => 10}
+  .clear
+  %button#golint{type: :submit} Lint It!
