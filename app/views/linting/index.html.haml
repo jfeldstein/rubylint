@@ -1,7 +1,24 @@
-- unless @linted.blank?
-  %pre= @linted.pretty_inspect
+%h3 Turn this hash: 
 
 = form_tag do |f|
-  %textarea#lintable{:name => "lintable", :cols => 100, :rows => 10}
+  %textarea#hash{:name => "hash", :cols => 100, :rows => 10}= @unlinted
   .clear
   %button#golint{type: :submit} Lint It!
+
+%h3 into pretty JSON:
+- unless @linted.blank?
+  %textarea#linted.quickselect{:cols => 100, :rows => 10}= @linted
+
+
+:javascript
+  // Select-all when clicking in these textareas
+  $('.quickselect').focus(function(){
+    $this = $(this);
+    $this.select();
+
+    // HACK for Chrome
+    $this.onmouseup = function() {
+        textBox.onmouseup = null;
+        return false;
+    };
+  })
